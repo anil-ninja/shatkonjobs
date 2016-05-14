@@ -3,21 +3,21 @@ session_start();
 
 require_once "components/dbConnection.php";
 if (isset($_SESSION['user_id'])) {  
-	route($_SESSION['employee_type']);
+	header("Location: home.php");
 }
 
 if (isset($_POST['login'])) {
 	$email = mysqli_real_escape_string($db_handle, $_POST['username']); 
-	$password = md5(mysqli_real_escape_string($db_handle, $_POST['passwordlogin']));
-	$response = mysqli_query($db_handle,"select * from user where email = '$email' AND password = '$password';") ;
+	$password = mysqli_real_escape_string($db_handle, $_POST['passwordlogin']);
+	$response = mysqli_query($db_handle,"select * from users where username = '$email' AND password = '$password';") ;
 	$num_rows = mysqli_num_rows($response);
 	if ( $num_rows > 0){
 		$responseRow = mysqli_fetch_array($response);
 		$_SESSION['first_name'] = $responseRow['first_name'] ;
 		$_SESSION['email'] = $responseRow['email'];
         $_SESSION['user_id'] = $responseRow['id'];
-		$_SESSION['employee_type'] = $responseRow['employee_type'];
-        route($_SESSION['employee_type']);
+		
+        header("Location: home.php");
 	}
 	else {
 		echo "<center ><b>Sorry! Invalid username or password!</b></center>";      
@@ -42,21 +42,22 @@ if (isset($_POST['login'])) {
     <div class="row" >
         <div class = "col-xs-2 col-ls-2"></div>
         <div class = "col-xs-4 col-ls-4">
-            <img src="images/logo.png" width="420" style=" margin-top:85px; "  alt="BlueTeam"><div class="pull-right"> to give you Relief...</div>
+            <img src="images/logo.png" width="420" style=" margin-top:85px; "  alt="BlueTeam">
+            <!-- <div class="pull-right"> to give you Relief...</div> -->
             
         </div>
         <div class = "col-xs-2 col-ls-4" style="width:350px; margin-top:85px; background-color: #F8F8F8 ;">
             <ul class="nav nav-tabs" role="tablist" style="font-size:14px; margin-bottom: 0px; margin-top: 12px;">
                 <li role="presentation" class="active" id="signup_modal">
-                    <a href="#tabSignup" role="tab" data-toggle="tab"> SignIn </a>
+                    <!-- <a href="#tabSignup" role="tab" data-toggle="tab"> SignIn </a> -->
                 </li>  
             </ul>
             <div class="tab-content" style="margin-bottom: 12px">         
                 <div role="tabpanel" class="row tab-pane active" id="tabSignup" style="line-height: 2;" >
-                    <p align="center"><font size="5" >BlueNet</font></p></br>
+                    <p align="center"><font size="5" >Shatkonjobs</font></p></br>
                     <form method="post">
                         <div class="input-group">
-                            <span class="input-group-addon">Email</span>
+                            <span class="input-group-addon">Username</span>
                             <input type="text" class="form-control" name="username" placeholder="Email ">
                         </div>
                         <br/>
@@ -64,9 +65,9 @@ if (isset($_POST['login'])) {
                             <span class="input-group-addon">Password&nbsp;</span>
                             <input type="password" class="form-control" name="passwordlogin" placeholder="Password">
                         </div><br/>
-                        <input type="submit" class="btn btn-success btn-lg" name = "login" value = "Log in" >
+                        <center><input type="submit" class="btn btn-success btn-lg " name = "login" value = "Log in" ></center>
                     </form>
-                    powered by Shatkon Labs Pvt. Ltd.
+                    <center>powered by Shatkon Labs Pvt. Ltd.</center>
                 </div>  
             </div>  
         </div>	<?php /*

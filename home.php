@@ -26,43 +26,17 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
   <?php require_once "components/navbar.php"; ?>
-  <div id="wrapper">
-   <!--BEGIN SIDEBAR MENU-->
-    <nav id="sidebar" role="navigation" data-step="2" data-position="right" class="navbar-default navbar-static-side">
-      <div class="sidebar-collapse menu-scroll" >
-        <ul id="side-menu" class="nav">      
-          <div class="clearfix"></div>
-          <?php include_once "components/sidenav.php"; ?>
-        </ul>
-      </div>
-    </nav>
-    <div id="page-wrapper">
-    <!--BEGIN TITLE & BREADCRUMB PAGE-->
-      <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
-        <div class="page-header pull-left">
-          <div class="page-title">BlueNet&nbsp;/
-            <a  href="request.php" ><?= $_SESSION['employee_type'] ?></a>&nbsp;/
-            <a  class="selectedStatus" ></a>
-          </div>
-        </div>
-        <ol class="breadcrumb page-breadcrumb pull-right">
-          <li></li>
-          <li></li>
-          <li></li>
-        </ol>
-        <div class="clearfix"></div>
-      </div>
+
       <div class="page-content">
         <div id="tab-general">
           <div class="row">
-            <div class="col-lg-9">
-              <div class="searchresult"></div>
-              <div class="panel-primary middlePanel">
-                <?php //require_once "components/page_contect.php"; ?>
+            <div class="col-lg-4">
+              <div class="panel-primary">
+                <?php require_once "components/addworker.php"; ?>
               </div>
             </div>
-            <div class="col-lg-3">
-              <?php if(($_SESSION['employee_type'] != 'ba') AND ($_SESSION['employee_type'] != 'operator')) require_once "components/requestsearchform.php"; ?>
+            <div class="col-lg-7">
+                <?php require_once "components/page_contect.php"; ?>
             </div>
           </div>
         </div>
@@ -70,8 +44,5 @@ if (!isset($_SESSION['user_id'])) {
     </div>
   </div>
   <?php include_once "components/footers.php"; ?>
-  <script type="text/javascript">
-  	  getDefaultData(<?php echo "\"".$_SESSION['employee_type']."\"" ; ?>); 
-	</script>
 </body>
 </html>
