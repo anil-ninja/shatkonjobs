@@ -5,8 +5,8 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['UserService', '$rootScope'];
-    function HomeController(UserService, $rootScope) {
+    HomeController.$inject = ['UserService', 'CandidateService','$rootScope'];
+    function HomeController(UserService, CandidateService,  $rootScope) {
         var vm = this;
 
         vm.user = null;
@@ -16,16 +16,26 @@
         initController();
 
         function initController() {
-            loadCurrentUser();
-            loadAllUsers();
+          //  loadCurrentUser();
+           // loadAllUsers();
+            loadToCallCandidates();
         }
 
-        function loadCurrentUser() {
+        function loadToCallCandidates(){
+            CandidateService.GetAll()
+                .then(function (response) {
+                    vm.toCallCandidates = response.candidates;
+                    console.log(vm.toCallCandidates[1].name);
+                });
+
+        }
+
+        /*function loadCurrentUser() {
             UserService.GetByUsername($rootScope.globals.currentUser.username)
                 .then(function (user) {
                     vm.user = user;
                 });
-        }
+        }*/
 
         function loadAllUsers() {
             UserService.GetAll()
