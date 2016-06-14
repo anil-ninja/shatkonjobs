@@ -5,8 +5,8 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['UserService', 'CandidateService','$rootScope'];
-    function HomeController(UserService, CandidateService,  $rootScope) {
+    HomeController.$inject = ['UserService',  'CandidateService','$rootScope', 'FlashService'];
+    function HomeController(UserService, CandidateService,  $rootScope, FlashService) {
         var vm = this;
 
         vm.user = null;
@@ -54,13 +54,17 @@
         vm.registerWorker = function registerWorker() {
             console.log("registerWorker function");
             vm.dataLoading = true;
-            UserService.CreateWorker(vm.user)
+            CandidateService.CreateWorker(vm.user)
                 .then(function (response) {
-                    if (response.success) {
+                    console.log("safa",response);
+                    if (response.candidate) {
                         FlashService.Success('Registration successful', true);
-                        $location.path('/login');
+                        vm.dataLoading = false;
+                        vm.user = null;
+                        loadToCallCandidates();
+                        //$location.path('/login');
                     } else {
-                        FlashService.Error(response.message);
+                        FlashService.Error(response.error.text);
                         vm.dataLoading = false;
                     }
                 });

@@ -42,7 +42,7 @@
         }
 
         function CreateWorker(user) {
-            return $http.post('http://blueteam.in/api/users', user).then(handleSuccess, handleError('Error creating user'));
+            return $http.post('http://api.shatkonjobs.com/candidates', user).then(handleSuccess, handleError('Error creating user'));
         }
 
         function Update(user) {
