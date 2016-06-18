@@ -21,7 +21,10 @@
             loadToCallCandidates();
         }
 
+        vm.loadToCallCandidates = loadToCallCandidates;
+
         function loadToCallCandidates(){
+            vm.search = false;
             CandidateService.GetAll()
                 .then(function (response) {
                     vm.toCallCandidates = response.candidates;
@@ -51,10 +54,38 @@
             });
         }
 
+        vm.loadMobile = function (index){
+            console.log("load by mobile called",index,vm.toCallCandidates[index]);
+            vm.toCallCandidates[index].mobile = parseInt(vm.toCallCandidates[index].mobile);
+            vm.toCallCandidates[index].age = parseInt(vm.toCallCandidates[index].age);
+            vm.user = vm.toCallCandidates[index];
+
+        }
+
+        vm.searchWorker = function () {
+            console.log("searching Worker function");
+            vm.dataLoading = true;
+
+                CandidateService.Search(vm.userSearch)
+                    .then(function (response) {
+                        console.log("safa",response);
+                        if (response.candidates) {
+                            vm.dataLoading = false;
+                            vm.user = null;
+                            vm.toCallCandidates = response.candidates;
+                        } else {
+                            FlashService.Error(response.error.text);
+                            vm.dataLoading = false;
+                        }
+                    });
+
+        }
+
         vm.registerWorker = function registerWorker() {
             console.log("registerWorker function");
             vm.dataLoading = true;
-            CandidateService.CreateWorker(vm.user)
+            if(!vm.user.id){
+            CandidateService.Create(vm.user)
                 .then(function (response) {
                     console.log("safa",response);
                     if (response.candidate) {
@@ -68,6 +99,22 @@
                         vm.dataLoading = false;
                     }
                 });
+            } else {
+                CandidateService.Update(vm.user)
+                    .then(function (response) {
+                        console.log("safa",response);
+                        if (response.status) {
+                            FlashService.Success('Updated successful', true);
+                            vm.dataLoading = false;
+                            vm.user = null;
+                            loadToCallCandidates();
+                            //$location.path('/login');
+                        } else {
+                            FlashService.Error(response.error.text);
+                            vm.dataLoading = false;
+                        }
+                    });
+            }
         }
     }
 

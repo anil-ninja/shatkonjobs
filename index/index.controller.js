@@ -27,6 +27,7 @@
                 });
         }
 
+
         function loadAllUsers() {
             UserService.GetAll()
                 .then(function (users) {

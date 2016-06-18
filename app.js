@@ -35,6 +35,13 @@
                 
             })
 
+            .when('/home/:mobile', {
+                controller: 'HomeController',
+                templateUrl: 'home/home.view.html',
+                controllerAs: 'vm'
+
+            })
+
             .otherwise({ redirectTo: '/' });
     }
 
