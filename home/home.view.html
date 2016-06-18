@@ -53,8 +53,10 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="profession">Profession</label>
-                        <input type="text" name="profession" id="professions" class="form-control"
-                               ng-model="vm.userSearch.profession"/>
+                        <select name="profession" ng-model="vm.userSearch.profession">
+                            <option value="{{ profession.id }}" ng-repeat="profession in vm.professions" >{{ profession.name | uppercase}}</option>
+
+                        </select>
                     </div>
                 </div>
             </div>
@@ -145,12 +147,16 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
+
                     <div class="form-group"
-                         ng-class="{ 'has-error': form.service.$dirty && form.service.$error.required }">
+                         ng-class="{ 'has-error': form.service.$dirty && form.service.$error.required }">>
                         <label for="profession">Profession</label>
-                        <input type="text" name="profession" id="profession" class="form-control"
-                               ng-model="vm.user.profession" required/>
+                        <select name="profession" id="profession" class="form-control" ng-model="vm.user.profession" >
+                            <option value="{{ profession.id }}" ng-repeat="profession in vm.professions" >{{ profession.name | uppercase}}</option>
+
+                        </select>
                         <span ng-show="form.profession.$dirty && form.profession.$error.required" class="help-block">Profession is required</span>
+
                     </div>
                 </div>
                 <div class="col-md-6">

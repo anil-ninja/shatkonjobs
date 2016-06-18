@@ -20,6 +20,7 @@
         service.Update = Update;
         service.Delete = Delete;
         service.Search = Search;
+        service.GetAllProfession = GetAllProfession;
 
         return service;
 
@@ -27,6 +28,12 @@
             return $http
                         .get('http://api.shatkonjobs.com/candidates/to-call')
                         .then(handleSuccess, handleError('Error getting all users'));
+        }
+
+        function GetAllProfession() {
+            return $http
+                .get('http://api.shatkonjobs.com/professions')
+                .then(handleSuccess, handleError('Error getting all users'));
         }
 
         function Search(userSearch) {

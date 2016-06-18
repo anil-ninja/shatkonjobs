@@ -19,9 +19,20 @@
           //  loadCurrentUser();
            // loadAllUsers();
             loadToCallCandidates();
+            loadProfessions();
         }
 
         vm.loadToCallCandidates = loadToCallCandidates;
+
+        function loadProfessions(){
+            vm.search = false;
+            CandidateService.GetAllProfession()
+                .then(function (response) {
+                    vm.professions = response.professions;
+                    console.log(vm.professions.name);
+                });
+
+        }
 
         function loadToCallCandidates(){
             vm.search = false;
