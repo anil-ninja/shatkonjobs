@@ -18,12 +18,12 @@
 
         function login() {
             vm.dataLoading = true;
-            AuthenticationService.Login(vm.username, vm.password, function (response) {
-                if (response.success) {
-                    AuthenticationService.SetCredentials(vm.username, vm.password);
+            AuthenticationService.Login(vm.user, function (resp) {
+                if (resp.success) {
+                    AuthenticationService.SetCredentials(vm.user.username, vm.user.password);
                     $location.path('/home');
                 } else {
-                    FlashService.Error(response.message);
+                    FlashService.Error(resp.message);
                     vm.dataLoading = false;
                 }
             });

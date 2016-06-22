@@ -15,21 +15,22 @@
 
         return service;
 
-        function Login(username, password, callback) {
+        function Login(user, callback) {
 
             /* Dummy authentication for testing, uses $timeout to simulate api call
              ----------------------------------------------*/
             $timeout(function () {
                 var response;
-                UserService.GetByUsername(username)
-                    .then(function (user) {
-                        response = { success: true };
-                        /*if (user !== null && user.password === password) {
-                            response = { success: true };
+                UserService.Auth(user)
+                    .then(function (response) {
+                        console.log(response);
+                        var resp = null;
+                        if (response.auth == true || response.auth == "true") {
+                            resp = { success: true };
                         } else {
-                            response = { success: false, message: 'Username or password is incorrect' };
-                        }*/
-                        callback(response);
+                            resp = { success: false, message: 'Username or password is incorrect' };
+                        }
+                        callback(resp);
                     });
             }, 1000);
 
