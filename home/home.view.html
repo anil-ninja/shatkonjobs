@@ -149,7 +149,7 @@
                 <div class="col-md-6">
 
                     <div class="form-group"
-                         ng-class="{ 'has-error': form.service.$dirty && form.service.$error.required }">>
+                         ng-class="{ 'has-error': form.service.$dirty && form.service.$error.required }">
                         <label for="profession">Profession</label>
                         <select name="profession" id="profession" class="form-control" ng-model="vm.user.profession" >
                             <option value="{{ profession.id }}" ng-repeat="profession in vm.professions" >{{ profession.name | uppercase}}</option>
@@ -161,8 +161,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="remark">Remark</label>
-                        <input type="text" name="remark" id="remark" class="form-control" ng-model="vm.user.remark"/>
+                        <label for="remarks">Remark</label>
+                        <input type="text" name="remarks" id="remarks" class="form-control" ng-model="vm.user.remarks"/>
                     </div>
                 </div>
             </div>
