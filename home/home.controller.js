@@ -64,6 +64,15 @@
                 loadAllUsers();
             });
         }
+/*
+
+        vm.dtOptions = DTOptionsBuilder.newOptions()
+            .withPaginationType('full_numbers')
+            .withDisplayLength(2)
+            .withDOM('pitrfl')
+            .withOption('order', [, ]);
+*/
+
 
         vm.loadMobile = function (index){
             console.log("load by mobile called",index,vm.toCallCandidates[index]);
