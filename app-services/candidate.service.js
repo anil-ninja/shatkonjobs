@@ -21,6 +21,7 @@
         service.Delete = Delete;
         service.Search = Search;
         service.GetAllProfession = GetAllProfession;
+        service.GetAllArea = GetAllArea;
 
         return service;
 
@@ -36,13 +37,19 @@
                 .then(handleSuccess, handleError('Error getting all users'));
         }
 
+        function GetAllArea() {
+            return $http
+                .get('http://api.shatkonjobs.com/areas')
+                .then(handleSuccess, handleError('Error getting all users'));
+        }
+
         function Search(userSearch) {
 
             console.log(userSearch);
 
             var conStr = "";
             if(userSearch.age != undefined) conStr += "&age=" + userSearch.age;
-            if(userSearch.area != undefined) conStr += "&area=" + userSearch.area;
+            if(userSearch.area_id != undefined) conStr += "&area_id=" + userSearch.area_id;
             if(userSearch.gender != undefined) conStr += "&gender=" + userSearch.gender;
 
             return $http

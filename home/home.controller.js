@@ -20,6 +20,7 @@
            // loadAllUsers();
             loadToCallCandidates();
             loadProfessions();
+            loadAreas();
         }
 
         vm.loadToCallCandidates = loadToCallCandidates;
@@ -30,6 +31,16 @@
                 .then(function (response) {
                     vm.professions = response.professions;
                     console.log(vm.professions.name);
+                });
+
+        }
+
+        function loadAreas(){
+            vm.search = false;
+            CandidateService.GetAllArea()
+                .then(function (response) {
+                    vm.areas = response.areas;
+                    console.log(vm.areas.area);
                 });
 
         }

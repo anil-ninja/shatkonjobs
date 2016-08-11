@@ -34,10 +34,20 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <!--<div class="col-md-3">
                     <div class="form-group">
                         <label for="area">Area</label>
                         <input type="text" name="area" id="areaS" class="form-control" ng-model="vm.userSearch.area"/>
+                    </div>
+                </div>-->
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="area">Area</label>
+                        <select name="area" ng-model="vm.userSearch.area_id">
+                            <option value="{{ area.id }}" ng-repeat="area in vm.areas" >{{ area.area | uppercase}}</option>
+
+                        </select>
                     </div>
                 </div>
 
@@ -106,13 +116,28 @@
                 <span ng-show="form.dob.$dirty && form.dob.$error.required" class="help-block">Gender is required</span>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <!--<div class="col-md-6">
                     <div class="form-group" ng-class="{ 'has-error': form.area.$dirty && form.area.$error.required }">
                         <label for="area">Area</label>
                         <input type="text" name="area" id="area" class="form-control" ng-model="vm.user.area" required/>
                         <span ng-show="form.address.$dirty && form.address.$error.required" class="help-block">Area is required</span>
                     </div>
+                </div>-->
+
+                <div class="col-md-6">
+
+                    <div class="form-group"
+                         ng-class="{ 'has-error': form.service.$dirty && form.service.$error.required }">
+                        <label for="area">Area</label>
+                        <select name="area" id="area" class="form-control" ng-model="vm.user.area_id" >
+                            <option value="{{ area.id }}" ng-repeat="area in vm.areas" >{{ area.area | uppercase}}</option>
+
+                        </select>
+                        <span ng-show="form.area.$dirty && form.area.$error.required" class="help-block">Area is required</span>
+
+                    </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="native-place">Native Place</label>
