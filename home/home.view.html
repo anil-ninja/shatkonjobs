@@ -15,19 +15,21 @@
         <button class="btn btn-danger" ng-click="vm.search = vm.search?false:true">Search filters</button>
     </div>
 </div>
-<div class="row" ng-show="vm.search">
+<div class="row" ng-show="vm.search" style="border-radius: 15px 15px 15px 15px; background: #73AD21;
+    padding: 20px; ">
     <div class="col-md-12 ">
+
         <h2>Please put filters</h2>
         <form name="form" ng-submit="vm.searchWorker()" role="form">
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="gender">Gender</label>
-                        <label style="margin-left:3em;" for="gender">Male</label>
+                        <label style="margin-left:3em;" for="gender">M</label>
                         <input style="margin-left:0.5em;" type="radio" name="gender" id="genderS"
                                ng-model="vm.userSearch.gender" value="male"/>
-                        <label style="margin-left:2em;" for="genderf">Female</label>
+                        <label style="margin-left:2em;" for="genderf">F</label>
                         <input style="margin-left:0.5em;" type="radio" name="gender" id="genderfS"
                                ng-model="vm.userSearch.gender" value="female"/>
 
@@ -52,10 +54,10 @@
                 </div>
 
 
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="age">Age</label>
-                        <input type="number" name="dob" id="ageS" class="form-control" ng-model="vm.userSearch.age"/>
+                        <input type="number" name="dob" id="ageS" size="4"  ng-model="vm.userSearch.age"/>
                     </div>
                 </div>
 
